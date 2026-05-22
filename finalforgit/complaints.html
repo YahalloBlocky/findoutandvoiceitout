@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complaints — Barangay Molino 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="bluepng.png" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="nav-logo"><img src="bluepng.png" alt="Logo"></span>
+        <div>
+          <div class="nav-title">Barangay Molino 3</div>
+          <div class="nav-sub">Bacoor City, Cavite</div>
+        </div>
+      </a>
+      <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">🏠 Home</a></li>
+        <li><a href="about.html" class="nav-link"> 📖 About</a></li>
+        <li><a href="lostfound.html" class="nav-link">🔍 Lost & Found</a></li>
+        <li><a href="complaints.html" class="nav-link active">📢 Complaints</a></li>
+        <li><a href="recommendations.html" class="nav-link">💡 Recommendations</a></li>
+        <li><a href="contact.html" class="nav-link">📞 Contact</a></li>
+
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-header" style="background:linear-gradient(135deg,#3a1a1a,#8a2a2a)">
+    <div class="page-header-inner">
+      <h1 class="page-title">📢 Complaints</h1>
+      <p class="page-desc">Report community issues. Vote to show which problems matter most.</p>
+      <div class="page-stats">
+        <div class="stat-chip complaint-chip">📢 <span id="complaint-count">0</span> Active</div>
+        <div class="stat-chip resolved-chip">✔ <span id="c-resolved-count">0</span> Resolved</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-main">
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="c-active">📢 Active</button>
+      <button class="tab-btn" data-tab="c-resolved">✔ Resolved</button>
+      <button class="tab-btn" data-tab="c-post">➕ Post Complaint</button>
+    </div>
+
+    <section class="tab-panel active" id="tab-c-active">
+      <div class="sort-bar">
+        <span class="sort-label">Sort:</span>
+        <button class="sort-btn active" id="c-sort-newest" onclick="setSort('newest')">Newest</button>
+        <button class="sort-btn" id="c-sort-oldest" onclick="setSort('oldest')">Oldest</button>
+      </div>
+      <div class="cards-grid" id="complaint-grid">
+        <div class="loading">Loading...</div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="tab-c-resolved">
+      <div class="cards-grid" id="c-resolved-grid">
+        <div class="loading">Loading...</div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="tab-c-post">
+      <div class="form-wrapper">
+        <div class="form-card">
+          <h2 style="font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.35rem">📢 Report a Complaint</h2>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:1.25rem;line-height:1.5">Describe a community
+            issue in Barangay Molino 3.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Title <span class="req">*</span></label>
+              <input type="text" id="c-title" placeholder="e.g. Clogged drainage on Molino Blvd" />
+            </div>
+            <div class="form-group">
+              <label>Your Name <span class="opt">(optional)</span></label>
+              <input type="text" id="c-name" placeholder="e.g. Teneta Dalanon" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description <span class="req">*</span></label>
+            <textarea id="c-desc" rows="4" placeholder="Describe the issue in detail..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Photo <span class="opt">(optional · JPG/PNG · max 2MB)</span></label>
+            <div class="upload-box" onclick="document.getElementById('c-image').click()">
+              <input type="file" id="c-image" accept=".jpg,.jpeg,.png" style="display:none"
+                onchange="previewImg('c-image','c-preview','c-ph','c-clear')" />
+              <div id="c-ph" class="upload-placeholder">
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">Click to upload a photo</div>
+                <div class="upload-hint">JPG or PNG, max 2MB</div>
+              </div>
+              <img id="c-preview" class="img-preview hidden" alt="Preview" />
+            </div>
+            <button class="clear-btn hidden" id="c-clear" onclick="clearImg('c-image','c-preview','c-ph','c-clear')">✕
+              Remove photo</button>
+          </div>
+          <button class="submit-btn" style="background:var(--complaint);color:#fff" onclick="submitComplaint()">📢
+            Submit Complaint</button>
+          <div id="c-msg" class="form-msg"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay hidden" id="modal" onclick="closeModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img id="modal-img" src="" alt="" />
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Barangay Molino 3 · Complaints Board</p>
+  </footer>
+
+  <script type="module" src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/complaints.js"></script>
+  <script src="../js/animations.js"></script>
+  <script>function toggleMenu() { document.getElementById('nav-links').classList.toggle('open') }</script>
+</body>
+
+</html>
