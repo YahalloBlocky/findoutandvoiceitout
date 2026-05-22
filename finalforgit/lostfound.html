@@ -103,7 +103,8 @@
             </div>
             <div class="form-group">
               <label>Contact Number <span class="req">*</span></label>
-              <input type="text" id="lf-contact" placeholder="e.g. 09XX-XXX-XXXX" />
+              <input type="tel" id="lf-contact" placeholder="e.g. 09XXXXXXXXX"
+                oninput="this.value=this.value.replace(/[^0-9+\-\s]/g,'')" />
             </div>
           </div>
           <div class="form-group">
