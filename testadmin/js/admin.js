@@ -17,7 +17,7 @@ import {
 
 // ── CREDENTIALS ───────────────────────────────────────────────
 const ADMIN_USER = "admin"
-const ADMIN_PASS = "password"
+const ADMIN_PASS = "tanginamo"
 
 // ── LOGIN / LOGOUT ────────────────────────────────────────────
 window.doLogin = function () {
