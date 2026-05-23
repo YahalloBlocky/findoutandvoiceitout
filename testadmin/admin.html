@@ -56,8 +56,13 @@
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" id="admin-pass" placeholder="Enter password" autocomplete="current-password"
-              onkeydown="if(event.key==='Enter') doLogin()" />
+            <div style="position:relative">
+              <input type="password" id="admin-pass" placeholder="Enter password" autocomplete="current-password"
+                onkeydown="if(event.key==='Enter') doLogin()" style="padding-right:2.75rem" />
+              <button type="button" onclick="togglePassVis()" id="pass-eye"
+                style="position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--gray-400);padding:0;line-height:1"
+                title="Show/hide password">👁️</button>
+            </div>
           </div>
           <button class="submit-btn" onclick="doLogin()"
             style="background:var(--navy);color:var(--yellow);margin-top:.25rem">
@@ -114,16 +119,16 @@
     <div class="page-header" style="background:linear-gradient(135deg,#111e3d,#1a2e5a)">
       <div class="page-header-inner">
         <h1 class="page-title">🛡️ Admin Control</h1>
-        <p class="page-desc">Manage all community posts — resolve, delete, and archive.</p>
-        <div class="page-stats">
+        <p class="page-desc">Manage all community posts — resolve, archive, and delete.</p>
+        <div class="admin-stats">
           <div class="stat-chip lost-chip">🔍 <span id="a-lost-count">0</span> Lost</div>
           <div class="stat-chip found-chip">✅ <span id="a-found-count">0</span> Found</div>
           <div class="stat-chip complaint-chip">📢 <span id="a-complaint-count">0</span> Complaints</div>
-          <div class="stat-chip rec-chip">💡 <span id="a-rec-count">0</span> Recommendations</div>
+          <div class="stat-chip rec-chip">💡 <span id="a-rec-count">0</span> Recs</div>
+          <div class="stat-chip resolved-chip">✔ <span id="a-resolved-count">0</span> Resolved</div>
           <div class="stat-chip"
             style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.25)">
-            🗑️ <span id="a-archive-count">0</span> Archived
-          </div>
+            🗑️ <span id="a-archive-count">0</span> Archived</div>
         </div>
       </div>
     </div>
