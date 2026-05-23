@@ -17,7 +17,16 @@ import {
 
 // ── CREDENTIALS ───────────────────────────────────────────────
 const ADMIN_USER = "admin"
-const ADMIN_PASS = "tanginamo"
+const ADMIN_PASS = "password123"
+
+// ── SHOW/HIDE PASSWORD ───────────────────────────────────────
+window.togglePassVis = function () {
+  const input = document.getElementById('admin-pass')
+  const btn = document.getElementById('pass-eye')
+  if (!input) return
+  if (input.type === 'password') { input.type = 'text'; btn.textContent = '─' }
+  else { input.type = 'password'; btn.textContent = '👁️' }
+}
 
 // ── LOGIN / LOGOUT ────────────────────────────────────────────
 window.doLogin = function () {
@@ -150,6 +159,9 @@ async function loadResolved() {
     ]
     items.sort((a, b) => tsCompare(b, a))
 
+    const resolvedCountEl = document.getElementById('a-resolved-count')
+    if (resolvedCountEl) resolvedCountEl.textContent = items.length
+
     grid.innerHTML = items.length === 0
       ? '<div class="empty-state">No resolved posts yet.</div>'
       : items.map(i => buildAdminCard(i, true, false)).join('')
@@ -262,7 +274,7 @@ function buildArchiveCard(post) {
         </div>
         <div class="admin-actions">
           <button class="admin-restore-btn" onclick="adminRestore('${post.id}')">↩ Restore</button>
-          <button class="admin-perma-delete-btn" onclick="adminPermaDelete('${post.id}')">💀 Delete Permanently</button>
+          <button class="admin-perma-delete-btn" onclick="adminPermaDelete('${post.id}')">❌ Delete Permanently</button>
         </div>
       </div>
     </div>`
