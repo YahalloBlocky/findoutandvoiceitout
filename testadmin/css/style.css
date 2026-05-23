@@ -1751,7 +1751,6 @@ a {
   align-items: center;
   margin-top: 0.75rem;
   width: 100%;
-  overflow-x: auto;
   padding-bottom: 0.25rem;
 }
 
@@ -1768,6 +1767,7 @@ a {
     justify-content: center;
     gap: 0.4rem;
     padding-bottom: 0.1rem;
+    overflow: auto;
   }
 
   .admin-stats .stat-chip {
