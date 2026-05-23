@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Barangay Molino 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Shared stylesheet for all pages -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" type="image/png" href="bluepng.png" />
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ─────────────────────────────────────────────── -->
+    <!-- Sticky top navigation bar shared across all pages -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-logo"><img src="bluepng.png" alt="Barangay Molino 3 Logo"></span>
+                <div>
+                    <div class="nav-title">Barangay Molino 3</div>
+                    <div class="nav-sub">Bacoor City, Cavite</div>
+                </div>
+            </a>
+            <!-- Hamburger button — only visible on mobile (CSS controls this) -->
+            <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="nav-link">🏠 Home</a></li>
+                <li><a href="about.html" class="nav-link"> 📖 About</a></li>
+                <li><a href="lostfound.html" class="nav-link">🔍 Lost & Found</a></li>
+                <li><a href="complaints.html" class="nav-link">📢 Complaints</a></li>
+                <li><a href="recommendations.html" class="nav-link">💡 Recommendations</a></li>
+                <li><a href="contact.html" class="nav-link active">📞 Contact</a></li>
+                <li><a href="admin.html" class="nav-link nav-link">🛡️ Admin</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── PAGE HEADER ────────────────────────────────────────── -->
+    <!-- Navy gradient banner at the top of inner pages -->
+    <div class="page-header">
+        <div class="page-header-inner">
+            <h1 class="page-title">📞 Contact Us</h1>
+            <p class="page-desc">Get in touch with Barangay Molino 3.</p>
+        </div>
+    </div>
+
+    <!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+    <main class="page-main">
+        <div class="contact-wrapper">
+
+            <!-- Address block -->
+            <div class="contact-block">
+                <div class="contact-icon">🏠</div>
+                <div>
+                    <div class="contact-label">Address</div>
+                    <div class="contact-value">
+                        Barangay Hall Molino 3<br>
+                        Molino Rd, Molino 3<br>
+                        Bacoor, 4102 Cavite
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phone number block -->
+            <div class="contact-block">
+                <div class="contact-icon">📞</div>
+                <div>
+                    <div class="contact-label">Contact Number</div>
+                    <!-- tel: link lets mobile users tap to call directly -->
+                    <div class="contact-value">
+                        <a href="tel:+6346454467">(046) 454-4667</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facebook page block -->
+            <div class="contact-block">
+                <div class="contact-icon">💬</div>
+                <div>
+                    <div class="contact-label">Facebook Page</div>
+                    <!-- Opens in a new tab so users don't leave the site -->
+                    <div class="contact-value">
+                        <a href="https://www.facebook.com/share/1CgEqL6Sfm/" target="_blank" rel="noopener noreferrer">
+                            Barangay Molino 3 Official Facebook Page
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <h2 class="about-heading">Barangay Map</h2>
+            <!-- Google Maps embed -->
+            <!-- The iframe src points to the barangay hall location on Google Maps.
+           overflow:hidden on .map-wrapper clips it to the border-radius. -->
+            <div class="map-wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.503772178698!2d120.97567507381821!3d14.39809828200502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d3d1855ae0bb%3A0x2bf3f6999ef9cf62!2sBrgy.%20Molino%20-%203!5e0!3m2!1sen!2sph!4v1779355457054!5m2!1sen!2sph"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ── FOOTER ─────────────────────────────────────────────── -->
+    <footer class="footer">
+        <p>Barangay Molino 3 &nbsp;&middot;&nbsp; Bacoor City, Cavite &nbsp;&middot;&nbsp; Community Website</p>
+    </footer>
+
+    <script>
+        // Toggle the mobile navigation menu open/closed
+        function toggleMenu() {
+            document.getElementById('nav-links').classList.toggle('open');
+        }
+    </script>
+    <script src="../js/animations.js"></script>
+</body>
+
+</html>

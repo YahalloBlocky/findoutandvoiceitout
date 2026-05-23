@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Barangay Molino 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="bluepng.png" />
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       LOGIN SCREEN — shown before authentication
+       Has the site navbar so users can navigate away if needed.
+  ══════════════════════════════════════════════════════════ -->
+  <div id="login-screen">
+
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <span class="nav-logo"><img src="bluepng.png" alt="Logo"></span>
+          <div>
+            <div class="nav-title">Barangay Molino 3</div>
+            <div class="nav-sub">Bacoor City, Cavite</div>
+          </div>
+        </a>
+        <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">🏠 Home</a></li>
+          <li><a href="about.html" class="nav-link">📖 About</a></li>
+          <li><a href="lostfound.html" class="nav-link">🔍 Lost & Found</a></li>
+          <li><a href="complaints.html" class="nav-link">📢 Complaints</a></li>
+          <li><a href="recommendations.html" class="nav-link">💡 Recommendations</a></li>
+          <li><a href="contact.html" class="nav-link">📞 Contact</a></li>
+          <li><a href="admin.html" class="nav-link nav-link active">🛡️ Admin</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="login-body">
+      <div class="login-card">
+        <div class="login-logo">
+          <img src="bluepng.png" alt="Barangay Molino 3 Logo" />
+        </div>
+        <div class="login-title">🛡️ Admin</div>
+        <div class="login-sub">Barangay Molino 3 · Bacoor City, Cavite</div>
+
+        <div class="login-form">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="admin-user" placeholder="Enter username" autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="admin-pass" placeholder="Enter password" autocomplete="current-password"
+              onkeydown="if(event.key==='Enter') doLogin()" />
+          </div>
+          <button class="submit-btn" onclick="doLogin()"
+            style="background:var(--navy);color:var(--yellow);margin-top:.25rem">
+            🔒 Log In
+          </button>
+          <div id="login-msg" class="form-msg"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>Barangay Molino 3 · Bacoor City, Cavite · Community Website</p>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       ADMIN DASHBOARD — hidden until logged in
+  ══════════════════════════════════════════════════════════ -->
+  <div id="admin-dashboard" class="hidden">
+
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <span class="nav-logo"><img src="bluepng.png" alt="Logo"></span>
+          <div>
+            <div class="nav-title">Barangay Molino 3</div>
+            <div class="nav-sub">Bacoor City, Cavite</div>
+          </div>
+        </a>
+        <div class="admin-nav-right">
+          <div class="admin-badge">
+            <span class="admin-dot"></span>
+            🛡️ Admin Logged In
+          </div>
+          <button class="logout-btn" onclick="doLogout()"> ➜] Log Out</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-header" style="background:linear-gradient(135deg,#111e3d,#1a2e5a)">
+      <div class="page-header-inner">
+        <h1 class="page-title">🛡️ Admin Control</h1>
+        <p class="page-desc">Manage all community posts — resolve, delete, and archive.</p>
+        <div class="page-stats">
+          <div class="stat-chip lost-chip">🔍 <span id="a-lost-count">0</span> Lost</div>
+          <div class="stat-chip found-chip">✅ <span id="a-found-count">0</span> Found</div>
+          <div class="stat-chip complaint-chip">📢 <span id="a-complaint-count">0</span> Complaints</div>
+          <div class="stat-chip rec-chip">💡 <span id="a-rec-count">0</span> Recommendations</div>
+          <div class="stat-chip"
+            style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.25)">
+            🗑️ <span id="a-archive-count">0</span> Archived
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="page-main">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="a-lostfound">🔍 Lost & Found</button>
+        <button class="tab-btn" data-tab="a-complaints">📢 Complaints</button>
+        <button class="tab-btn" data-tab="a-recommendations">💡 Recommendations</button>
+        <button class="tab-btn" data-tab="a-resolved">✔ Resolved</button>
+        <button class="tab-btn" data-tab="a-archive">🗑️ Archive</button>
+      </div>
+
+      <section class="tab-panel active" id="tab-a-lostfound">
+        <div class="admin-section-label">Active Lost & Found Posts</div>
+        <div class="cards-grid" id="a-lf-grid">
+          <div class="loading">Loading...</div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-a-complaints">
+        <div class="admin-section-label">Active Complaints</div>
+        <div class="cards-grid" id="a-complaint-grid">
+          <div class="loading">Loading...</div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-a-recommendations">
+        <div class="admin-section-label">Active Recommendations</div>
+        <div class="cards-grid" id="a-rec-grid">
+          <div class="loading">Loading...</div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-a-resolved">
+        <div class="admin-section-label">All Resolved Posts</div>
+        <div class="cards-grid" id="a-resolved-grid">
+          <div class="loading">Loading...</div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-a-archive">
+        <div class="admin-section-label">Archived (Deleted) Posts — Admin Only</div>
+        <p style="font-size:.83rem;color:var(--gray-600);margin-bottom:1rem;line-height:1.6">
+          These posts were removed from public view by an admin. You can restore them or permanently delete them from
+          the database.
+        </p>
+        <div class="cards-grid" id="a-archive-grid">
+          <div class="loading">Loading...</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Barangay Molino 3 · Admin Dashboard · Authorized Personnel Only</p>
+    </footer>
+  </div>
+
+  <div class="modal-overlay hidden" id="modal" onclick="closeModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img id="modal-img" src="" alt="" />
+    </div>
+  </div>
+
+  <script type="module" src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/admin.js"></script>
+  <script>function toggleMenu() { document.getElementById('nav-links').classList.toggle('open') }</script>
+</body>
+
+</html>

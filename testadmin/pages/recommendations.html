@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendations — Barangay Molino 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="bluepng.png" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="nav-logo"><img src="bluepng.png" alt="Logo"></span>
+        <div>
+          <div class="nav-title">Barangay Molino 3</div>
+          <div class="nav-sub">Bacoor City, Cavite</div>
+        </div>
+      </a>
+      <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link ">🏠 Home</a></li>
+        <li><a href="about.html" class="nav-link"> 📖 About</a></li>
+        <li><a href="lostfound.html" class="nav-link">🔍 Lost & Found</a></li>
+        <li><a href="complaints.html" class="nav-link">📢 Complaints</a></li>
+        <li><a href="recommendations.html" class="nav-link active">💡 Recommendations</a></li>
+        <li><a href="contact.html" class="nav-link">📞 Contact</a></li>
+        <li><a href="admin.html" class="nav-link nav-link">🛡️ Admin</a></li>
+
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-header" style="background:linear-gradient(135deg,#1e995b,#11b362)">
+    <div class="page-header-inner">
+      <h1 class="page-title">💡 Recommendations</h1>
+      <p class="page-desc">Share your ideas to improve Barangay Molino 3. Vote on ideas you support!</p>
+      <div class="page-stats">
+        <div class="stat-chip rec-chip">💡 <span id="rec-count">0</span> Active</div>
+        <div class="stat-chip resolved-chip">✔ <span id="r-resolved-count">0</span> Resolved</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-main">
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="r-active">💡 Active</button>
+      <button class="tab-btn" data-tab="r-resolved">✔ Resolved</button>
+      <button class="tab-btn" data-tab="r-post">➕ Post Recommendation</button>
+    </div>
+
+    <section class="tab-panel active" id="tab-r-active">
+      <div class="sort-bar">
+        <span class="sort-label">Sort:</span>
+        <button class="sort-btn active" id="r-sort-newest" onclick="setRSort('newest')">Newest</button>
+        <button class="sort-btn" id="r-sort-oldest" onclick="setRSort('oldest')">Oldest</button>
+      </div>
+      <div class="cards-grid" id="rec-grid">
+        <div class="loading">Loading...</div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="tab-r-resolved">
+      <div class="cards-grid" id="r-resolved-grid">
+        <div class="loading">Loading...</div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="tab-r-post">
+      <div class="form-wrapper">
+        <div class="form-card">
+          <h2 style="font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:.35rem">💡 Share a Recommendation
+          </h2>
+          <p style="font-size:.85rem;color:var(--gray-600);margin-bottom:1.25rem;line-height:1.5">Suggest improvements
+            for Barangay Molino 3.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Title <span class="req">*</span></label>
+              <input type="text" id="r-title" placeholder="e.g. Add streetlights on side roads" />
+            </div>
+            <div class="form-group">
+              <label>Your Name <span class="opt">(optional)</span></label>
+              <input type="text" id="r-name" placeholder="e.g. Nisha Almosa" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description <span class="req">*</span></label>
+            <textarea id="r-desc" rows="4" placeholder="Describe your recommendation in detail..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Photo <span class="opt">(optional · JPG/PNG · max 2MB)</span></label>
+            <div class="upload-box" onclick="document.getElementById('r-image').click()">
+              <input type="file" id="r-image" accept=".jpg,.jpeg,.png" style="display:none"
+                onchange="previewImg('r-image','r-preview','r-ph','r-clear')" />
+              <div id="r-ph" class="upload-placeholder">
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">Click to upload a photo</div>
+                <div class="upload-hint">JPG or PNG, max 2MB</div>
+              </div>
+              <img id="r-preview" class="img-preview hidden" alt="Preview" />
+            </div>
+            <button class="clear-btn hidden" id="r-clear" onclick="clearImg('r-image','r-preview','r-ph','r-clear')">✕
+              Remove photo</button>
+          </div>
+          <button class="submit-btn" style="background:var(--rec);color:#fff" onclick="submitRec()">💡 Submit
+            Recommendation</button>
+          <div id="r-msg" class="form-msg"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay hidden" id="modal" onclick="closeModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img id="modal-img" src="" alt="" />
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Barangay Molino 3 · Recommendations Board</p>
+  </footer>
+
+  <script type="module" src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/recommendations.js"></script>
+  <script src="../js/animations.js"></script>
+  <script>function toggleMenu() { document.getElementById('nav-links').classList.toggle('open') }</script>
+</body>
+
+</html>
