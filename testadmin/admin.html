@@ -78,7 +78,7 @@
   ══════════════════════════════════════════════════════════ -->
   <div id="admin-dashboard" class="hidden">
 
-    <nav class="navbar">
+    <nav class="navbar" style="position:relative">
       <div class="nav-inner">
         <a href="index.html" class="nav-brand">
           <span class="nav-logo"><img src="bluepng.png" alt="Logo"></span>
@@ -87,13 +87,27 @@
             <div class="nav-sub">Bacoor City, Cavite</div>
           </div>
         </a>
+        <!-- Desktop: inline badge + logout -->
         <div class="admin-nav-right">
           <div class="admin-badge">
             <span class="admin-dot"></span>
-            🛡️ Admin Logged In
+            🛡️Admin Logged In
           </div>
-          <button class="logout-btn" onclick="doLogout()"> ➜] Log Out</button>
+          <button class="logout-btn" onclick="doLogout()">➜ Log Out</button>
         </div>
+        <!-- Mobile: hamburger toggle -->
+        <button class="admin-nav-toggle" onclick="toggleAdminMenu()" id="admin-nav-toggle">
+          <span class="admin-dot"></span>
+          🛡️ ☰
+        </button>
+      </div>
+      <!-- Mobile dropdown panel -->
+      <div class="admin-nav-dropdown" id="admin-nav-dropdown">
+        <div class="admin-badge">
+          <span class="admin-dot"></span>
+          🛡️ Admin Logged In
+        </div>
+        <button class="logout-btn" onclick="doLogout()">➜ Log Out</button>
       </div>
     </nav>
 
@@ -177,7 +191,20 @@
 
   <script type="module" src="../js/firebase-config.js"></script>
   <script type="module" src="../js/admin.js"></script>
-  <script>function toggleMenu() { document.getElementById('nav-links').classList.toggle('open') }</script>
+  <script>
+    function toggleMenu() { document.getElementById('nav-links').classList.toggle('open') }
+    function toggleAdminMenu() {
+      document.getElementById('admin-nav-dropdown').classList.toggle('open');
+    }
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+      const dropdown = document.getElementById('admin-nav-dropdown');
+      const toggle = document.getElementById('admin-nav-toggle');
+      if (dropdown && toggle && !dropdown.contains(e.target) && !toggle.contains(e.target)) {
+        dropdown.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 
 </html>
