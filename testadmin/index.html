@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barangay Molino 3 — Community Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="bluepng.png" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span class="nav-logo"><img src="bluepng.png" alt="Logo"></span>
+        <div>
+          <div class="nav-title">Barangay Molino 3</div>
+          <div class="nav-sub">Bacoor City, Cavite</div>
+        </div>
+      </a>
+      <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link active">🏠 Home</a></li>
+        <li><a href="about.html" class="nav-link"> 📖 About</a></li>
+        <li><a href="lostfound.html" class="nav-link">🔍 Lost & Found</a></li>
+        <li><a href="complaints.html" class="nav-link">📢 Complaints</a></li>
+        <li><a href="recommendations.html" class="nav-link">💡 Recommendations</a></li>
+        <li><a href="contact.html" class="nav-link">📞 Contact</a></li>
+        <li><a href="admin.html" class="nav-link nav-link">🛡️ Admin</a></li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">🏛️ Find out and Voice it out</div>
+      <h1 class="hero-title">Lost & Found And Community Feedback <br><span class="hero-highlight"> Barangay Molino
+          3</span></h1>
+      <p class="hero-desc">Your voice matters. Report lost items, submit community concerns, and help build a better
+        Molino 3.</p>
+      <div class="hero-btns">
+        <a href="lostfound.html" class="btn btn-primary">🔍 Lost & Found</a>
+        <a href="complaints.html" class="btn btn-primary">📢 Complaints</a>
+        <a href="recommendations.html" class="btn btn-primary">💡 Recommendations</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-inner">
+      <div class="feature-card" onclick="location.href='lostfound.html'">
+        <div class="feature-icon">🔍</div>
+        <h3 class="feature-title">Lost & Found</h3>
+        <p class="feature-desc">Post lost or found items in the barangay. Upload a photo and add contact details so
+          owners can be reunited with their belongings.</p>
+        <span class="feature-link">Go to Board →</span>
+      </div>
+      <div class="feature-card" onclick="location.href='complaints.html'">
+        <div class="feature-icon">📢</div>
+        <h3 class="feature-title">Complaints</h3>
+        <p class="feature-desc">Report community issues. Vote on posts to show which concerns matter most to the
+          community.<br><br></p>
+        <span class="feature-link">Report an Issue →</span>
+      </div>
+      <div class="feature-card" onclick="location.href='recommendations.html'">
+        <div class="feature-icon">💡</div>
+        <h3 class="feature-title">Recommendations</h3>
+        <p class="feature-desc">Suggest improvements for Barangay Molino 3. Share your ideas and vote on suggestions you
+          support.<br> <br></p>
+        <span class="feature-link">Share an Idea →</span>
+      </div>
+      <div class="feature-card" onclick="location.href='about.html'">
+        <div class="feature-icon">📖</div>
+        <h3 class="feature-title">About the Website</h3>
+        <p class="feature-desc">Learn more about the website. It's purpose and how to use it.<br><br> <br></p>
+        <span class="feature-link">Learn More →</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p> Barangay Molino 3 · Bacoor City, Cavite · Community Website</p>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.getElementById('nav-links').classList.toggle('open') }
+  </script>
+  <script src="../js/animations.js"></script>
+</body>
+
+</html>
