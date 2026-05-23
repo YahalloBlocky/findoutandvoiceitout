@@ -24,7 +24,7 @@ window.togglePassVis = function () {
   const input = document.getElementById('admin-pass')
   const btn = document.getElementById('pass-eye')
   if (!input) return
-  if (input.type === 'password') { input.type = 'text'; btn.textContent = '─' }
+  if (input.type === 'password') { input.type = 'text'; btn.textContent = ' 🙈' }
   else { input.type = 'password'; btn.textContent = '👁️' }
 }
 
