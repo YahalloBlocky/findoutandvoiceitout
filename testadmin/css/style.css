@@ -3,6 +3,11 @@
    Colors: Navy Blue (#1a2e5a) + Yellow (#f5c800) + White
    ============================================================ */
 
+
+html {
+  background: var(--navy-dark);
+}
+
 :root {
   --navy: #1a2e5a;
   --navy-dark: #111e3d;
@@ -1868,5 +1873,282 @@ a {
 
   #admin-dashboard .footer {
     margin-top: 0;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ANIMATIONS
+   Subtle, purposeful. No spinning, no bouncing.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── PAGE LOAD FADE-IN ───────────────────────────────────────── */
+/* Everything fades in gently on first paint */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.navbar {
+  animation: fadeIn 0.4s ease both;
+}
+
+.hero-badge {
+  animation: fadeUp 0.45s ease 0.05s both;
+}
+
+.hero-title {
+  animation: fadeUp 0.45s ease 0.12s both;
+}
+
+.hero-desc {
+  animation: fadeUp 0.45s ease 0.2s both;
+}
+
+.hero-btns {
+  animation: fadeUp 0.45s ease 0.28s both;
+}
+
+.page-header {
+  animation: fadeUp 0.4s ease 0.05s both;
+}
+
+.page-main {
+  animation: fadeUp 0.45s ease 0.15s both;
+}
+
+.footer {
+  animation: fadeIn 0.5s ease 0.3s both;
+}
+
+.feature-card:nth-child(1) {
+  animation: fadeUp 0.45s ease 0.1s both;
+}
+
+.feature-card:nth-child(2) {
+  animation: fadeUp 0.45s ease 0.18s both;
+}
+
+.feature-card:nth-child(3) {
+  animation: fadeUp 0.45s ease 0.26s both;
+}
+
+.feature-card:nth-child(4) {
+  animation: fadeUp 0.45s ease 0.34s both;
+}
+
+.contact-block:nth-child(1) {
+  animation: fadeUp 0.45s ease 0.1s both;
+}
+
+.contact-block:nth-child(2) {
+  animation: fadeUp 0.45s ease 0.18s both;
+}
+
+.contact-block:nth-child(3) {
+  animation: fadeUp 0.45s ease 0.26s both;
+}
+
+.map-wrapper {
+  animation: fadeUp 0.45s ease 0.34s both;
+}
+
+.about-section {
+  animation: fadeUp 0.45s ease 0.1s both;
+}
+
+/* ── NAV LINKS ───────────────────────────────────────────────── */
+.nav-link {
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.nav-link:hover {
+  color: var(--yellow) !important;
+}
+
+/* ── TAB BUTTONS ─────────────────────────────────────────────── */
+/* Already has transition: all 0.2s — add a subtle bg fill on hover */
+.tab-btn:hover {
+  background: var(--gray-100);
+  border-radius: 6px 6px 0 0;
+}
+
+/* ── TAB PANEL SWITCH ────────────────────────────────────────── */
+/* Smooth content swap when switching tabs */
+.tab-panel.active {
+  animation: fadeUp 0.3s ease both;
+}
+
+/* ── SORT BUTTONS ────────────────────────────────────────────── */
+.sort-btn {
+  transition: all 0.18s ease;
+}
+
+.sort-btn:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+/* ── ITEM CARDS ──────────────────────────────────────────────── */
+.item-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.item-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ── RESOLVE / ARCHIVE / DELETE BUTTONS ──────────────────────── */
+.resolve-btn {
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.resolve-btn:hover {
+  transform: translateY(-1px);
+}
+
+.archive-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.8rem;
+  border-radius: 50px;
+  border: 1.5px solid #b45309;
+  background: transparent;
+  color: #b45309;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.15s ease;
+}
+
+.archive-btn:hover {
+  background: #b45309;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.8rem;
+  border-radius: 50px;
+  border: 1.5px solid var(--complaint);
+  background: transparent;
+  color: var(--complaint);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.15s ease;
+}
+
+.delete-btn:hover {
+  background: var(--complaint);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ── SUBMIT BUTTON ───────────────────────────────────────────── */
+.submit-btn {
+  transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── ABOUT CARDS ─────────────────────────────────────────────── */
+.about-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.about-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ── STAT CHIPS ──────────────────────────────────────────────── */
+.stat-chip {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ── UPLOAD BOX ──────────────────────────────────────────────── */
+.upload-box {
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.upload-box:hover {
+  border-color: var(--navy);
+  background: var(--gray-50);
+}
+
+/* ── TYPE TOGGLE BUTTONS (Lost/Found) ────────────────────────── */
+.type-btn {
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+}
+
+.type-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* ── MODAL ───────────────────────────────────────────────────── */
+.modal-overlay:not(.hidden) {
+  animation: fadeIn 0.2s ease both;
+}
+
+.modal-box {
+  animation: fadeUp 0.25s ease both;
+}
+
+/* ── LOADING PULSE ───────────────────────────────────────────── */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.loading {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
