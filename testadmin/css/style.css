@@ -456,9 +456,11 @@ a {
   transition: all 0.2s;
 }
 
-.sort-btn:hover {
-  border-color: var(--navy);
-  color: var(--navy);
+@media (hover: hover) {
+  .sort-btn:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+  }
 }
 
 .sort-btn.active {
@@ -1996,14 +1998,6 @@ a {
 }
 
 /* ── SORT BUTTONS ────────────────────────────────────────────── */
-.sort-btn {
-  transition: all 0.18s ease;
-}
-
-.sort-btn:hover {
-  border-color: var(--navy);
-  color: var(--navy);
-}
 
 /* ── ITEM CARDS ──────────────────────────────────────────────── */
 .item-card {
