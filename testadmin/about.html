@@ -178,7 +178,10 @@
 
     <script>
         function toggleMenu() {
+            // Toggle the mobile nav open/closed
             document.getElementById('nav-links').classList.toggle('open');
+            // Rotate the hamburger icon when open (CSS .menu-open does the spin)
+            document.querySelector('.nav-toggle').classList.toggle('menu-open');
         }
     </script>
 </body>
