@@ -14,8 +14,7 @@
 
 <body>
 
-    <!-- ── NAVBAR ─────────────────────────────────────────────── -->
-    <!-- Sticky top navigation bar shared across all pages -->
+
     <nav class="navbar">
         <div class="nav-inner">
             <a href="index.html" class="nav-brand">
@@ -25,7 +24,7 @@
                     <div class="nav-sub">Bacoor City, Cavite</div>
                 </div>
             </a>
-            <!-- Hamburger button — only visible on mobile (CSS controls this) -->
+
             <button class="nav-toggle" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html" class="nav-link">🏠 Home</a></li>
@@ -40,8 +39,7 @@
         </div>
     </nav>
 
-    <!-- ── PAGE HEADER ────────────────────────────────────────── -->
-    <!-- Navy gradient banner at the top of inner pages -->
+
     <div class="page-header">
         <div class="page-header-inner">
             <h1 class="page-title">📞 Contact Us</h1>
@@ -49,11 +47,11 @@
         </div>
     </div>
 
-    <!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+
     <main class="page-main">
         <div class="contact-wrapper">
 
-            <!-- Address block -->
+
             <div class="contact-block">
                 <div class="contact-icon">🏠</div>
                 <div>
@@ -66,7 +64,7 @@
                 </div>
             </div>
 
-            <!-- Phone number block -->
+
             <div class="contact-block">
                 <div class="contact-icon">📞</div>
                 <div>
@@ -78,12 +76,12 @@
                 </div>
             </div>
 
-            <!-- Facebook page block -->
+
             <div class="contact-block">
                 <div class="contact-icon">💬</div>
                 <div>
                     <div class="contact-label">Facebook Page</div>
-                    <!-- Opens in a new tab so users don't leave the site -->
+
                     <div class="contact-value">
                         <a href="https://www.facebook.com/share/1CgEqL6Sfm/" target="_blank" rel="noopener noreferrer">
                             Barangay Molino 3 Official Facebook Page
@@ -94,9 +92,7 @@
 
 
             <h2 class="about-heading">Barangay Map</h2>
-            <!-- Google Maps embed -->
-            <!-- The iframe src points to the barangay hall location on Google Maps.
-           overflow:hidden on .map-wrapper clips it to the border-radius. -->
+
             <div class="map-wrapper">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.503772178698!2d120.97567507381821!3d14.39809828200502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d3d1855ae0bb%3A0x2bf3f6999ef9cf62!2sBrgy.%20Molino%20-%203!5e0!3m2!1sen!2sph!4v1779355457054!5m2!1sen!2sph"
@@ -107,15 +103,18 @@
         </div>
     </main>
 
-    <!-- ── FOOTER ─────────────────────────────────────────────── -->
+
     <footer class="footer">
-        <p>Barangay Molino 3 &nbsp;&middot;&nbsp; Bacoor City, Cavite &nbsp;&middot;&nbsp; Community Website</p>
+        <p>Barangay Molino 3 · Bacoor City, Cavite · Community Website</p>
     </footer>
 
     <script>
-        // Toggle the mobile navigation menu open/closed
+
         function toggleMenu() {
+            // Toggle the mobile nav open/closed
             document.getElementById('nav-links').classList.toggle('open');
+            // Rotate the hamburger icon when open (CSS .menu-open does the spin)
+            document.querySelector('.nav-toggle').classList.toggle('menu-open');
         }
     </script>
 </body>
