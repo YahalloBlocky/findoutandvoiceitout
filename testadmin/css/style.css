@@ -1,9 +1,4 @@
-/* ============================================================
-   Barangay Molino 3 Community Portal - Stylesheet
-   Colors: Navy Blue (#1a2e5a) + Yellow (#f5c800) + White
-   ============================================================ */
-
-
+/*Overall Design*/
 html {
   background: var(--navy-dark);
 }
@@ -1266,20 +1261,32 @@ a {
   }
 
   .nav-links {
-    display: none;
+    /* Use max-height + opacity instead of display:none so CSS transitions work.
+       overflow:hidden clips the content while it animates in/out. */
     flex-direction: column;
     position: absolute;
     top: 64px;
     left: 0;
     right: 0;
     background: var(--navy-dark);
-    padding: 0.75rem 1rem;
+    padding: 0 1rem;
     gap: 0.25rem;
     box-shadow: var(--shadow-md);
+    /* Hidden state */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    /* Smooth slide-down and fade */
+    transition: max-height 0.35s ease, opacity 0.28s ease, padding 0.35s ease;
   }
 
   .nav-links.open {
-    display: flex;
+    /* Open state — grows to fit all links */
+    max-height: 520px;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0.75rem 1rem;
   }
 
   .nav-link {
@@ -1975,13 +1982,93 @@ a {
   animation: fadeUp 0.45s ease 0.1s both;
 }
 
-/* ── NAV LINKS ───────────────────────────────────────────────── */
+/* ── NAVBAR ANIMATIONS ───────────────────────────────────────── */
+
+/* Desktop: pill hover — background and border slide in smoothly.
+   The base .nav-link already has transition:all 0.2s from earlier in the file,
+   so we just override the hover color here for the desktop "glow" feel. */
 .nav-link {
-  transition: color 0.18s ease, background 0.18s ease;
+  transition: color 0.2s ease, background 0.2s ease,
+    border-color 0.2s ease, transform 0.15s ease;
 }
 
+/* Lift slightly on hover for a tactile feel */
 .nav-link:hover {
-  color: var(--yellow) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* Active link stays pinned (no lift) */
+.nav-link.active {
+  transform: none;
+}
+
+/* ── HAMBURGER BUTTON ANIMATION ───────────────────────────────── */
+/* Rotates 90° when the menu is open, giving a visual cue that
+   pressing it again will close the menu. */
+.nav-toggle {
+  transition: transform 0.3s ease, color 0.2s ease;
+  line-height: 1;
+}
+
+/* JS adds .menu-open to the button via toggleMenu() */
+.nav-toggle.menu-open {
+  transform: rotate(90deg);
+  color: var(--yellow);
+}
+
+/* ── MOBILE MENU LINK STAGGER ─────────────────────────────────── */
+/* Each link fades and slides up in sequence when the menu opens.
+   animation-fill-mode:both means it starts at the "from" state
+   even before the delay fires, so there's no flash. */
+@media (max-width: 600px) {
+  .nav-links.open li {
+    animation: navLinkIn 0.28s ease forwards;
+    opacity: 0;
+    /* start invisible until animation fires */
+  }
+
+  /* Stagger each item 50ms apart so they cascade down */
+  .nav-links.open li:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  .nav-links.open li:nth-child(2) {
+    animation-delay: 0.10s;
+  }
+
+  .nav-links.open li:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+
+  .nav-links.open li:nth-child(4) {
+    animation-delay: 0.20s;
+  }
+
+  .nav-links.open li:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+
+  .nav-links.open li:nth-child(6) {
+    animation-delay: 0.30s;
+  }
+
+  .nav-links.open li:nth-child(7) {
+    animation-delay: 0.35s;
+  }
+
+  @keyframes navLinkIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 }
 
 /* ── TAB BUTTONS ─────────────────────────────────────────────── */
