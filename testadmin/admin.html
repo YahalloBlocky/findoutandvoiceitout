@@ -13,10 +13,8 @@
 
 <body>
 
-  <!-- ══════════════════════════════════════════════════════════
-       LOGIN SCREEN — shown before authentication
-       Has the site navbar so users can navigate away if needed.
-  ══════════════════════════════════════════════════════════ -->
+  <!--LOGIN SCREEN — shown before authentication 
+  Has the site navbar so users can navigate away if needed. -->
   <div id="login-screen">
 
     <nav class="navbar">
@@ -78,9 +76,7 @@
     </footer>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════
-       ADMIN DASHBOARD — hidden until logged in
-  ══════════════════════════════════════════════════════════ -->
+  <!-- ADMIN CONTROL — hidden until logged in -->
   <div id="admin-dashboard" class="hidden">
 
     <nav class="navbar" style="position:relative">
@@ -92,7 +88,8 @@
             <div class="nav-sub">Bacoor City, Cavite</div>
           </div>
         </a>
-        <!-- Desktop: inline badge + logout -->
+
+
         <div class="admin-nav-right">
           <div class="admin-badge">
             <span class="admin-dot"></span>
@@ -197,7 +194,7 @@
   <script type="module" src="../js/firebase-config.js"></script>
   <script type="module" src="../js/admin.js"></script>
   <script>
-    function toggleMenu() { document.getElementById('nav-links').classList.toggle('open') }
+    function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); document.querySelector('#login-screen .nav-toggle').classList.toggle('menu-open'); }
     function toggleAdminMenu() {
       document.getElementById('admin-nav-dropdown').classList.toggle('open');
     }
