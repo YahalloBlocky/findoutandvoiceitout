@@ -181,3 +181,38 @@ window.esc = esc
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal()
 })
+
+// Custom confirm dialog — replaces browser confirm()
+export function showConfirm({ icon = '❓', title, desc = '', okText = 'Confirm', okColor = '#1a2e5a', danger = false } = {}) {
+  return new Promise(resolve => {
+    const overlay = document.createElement('div')
+    overlay.className = 'confirm-overlay'
+    overlay.innerHTML = `
+      <div class="confirm-box${danger ? ' danger' : ''}">
+        <div class="confirm-icon">${icon}</div>
+        <div class="confirm-title">${title}</div>
+        ${desc ? `<div class="confirm-desc">${desc}</div>` : ''}
+        <div class="confirm-btns">
+          <button class="confirm-cancel">Cancel</button>
+          <button class="confirm-ok" style="background:${okColor}">${okText}</button>
+        </div>
+      </div>`
+
+    document.body.appendChild(overlay)
+
+    const close = result => {
+      overlay.remove()
+      resolve(result)
+    }
+
+    overlay.querySelector('.confirm-ok').addEventListener('click', () => close(true))
+    overlay.querySelector('.confirm-cancel').addEventListener('click', () => close(false))
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(false) })
+
+    document.addEventListener('keydown', function onKey(e) {
+      if (e.key === 'Escape') { document.removeEventListener('keydown', onKey); close(false) }
+    })
+  })
+}
+
+window.showConfirm = showConfirm
