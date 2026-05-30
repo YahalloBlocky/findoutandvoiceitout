@@ -8,7 +8,7 @@
 // ============================================================
 
 import { db, storage } from "./firebase-config.js"
-import { initTabs, esc, formatDate, showMsg, uploadImage } from "./utils.js"
+import { initTabs, esc, formatDate, showMsg, uploadImage, showConfirm } from "./utils.js"
 import {
   collection, addDoc, getDocs, doc, updateDoc,
   query, where, serverTimestamp
@@ -249,7 +249,14 @@ function buildLFCard(item, resolved) {
 // Updates item status to 'resolved' in Firestore,
 // fades out the card, then reloads all grids
 window.resolveLF = async function (id) {
-  if (!confirm('Mark this item as resolved? It will move to the Resolved tab.')) return
+  const ok = await showConfirm({
+    icon: '✅',
+    title: 'Mark this item as resolved?',
+    desc: 'It will move to the Resolved tab. Do this once the item has been returned to its owner.',
+    okText: 'Mark Resolved',
+    okColor: '#1a7a5e'
+  })
+  if (!ok) return
   try {
     await updateDoc(doc(db, 'lost_found', id), { status: 'resolved' })
 
