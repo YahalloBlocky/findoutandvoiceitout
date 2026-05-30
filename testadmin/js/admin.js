@@ -9,13 +9,13 @@
 // ============================================================
 
 import { db } from "./firebase-config.js"
-import { initTabs, esc, formatDate } from "./utils.js"
+import { initTabs, esc, formatDate, showConfirm } from "./utils.js"
 import {
   collection, getDocs, doc, updateDoc, deleteDoc,
   addDoc, query, where, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"
 
-// ── CREDENTIALS ───────────────────────────────────────────────
+// ── USER AND PASSWORD ───────────────────────────────────────────────
 const ADMIN_USER = "admin"
 const ADMIN_PASS = "password123"
 
@@ -282,7 +282,14 @@ function buildArchiveCard(post) {
 
 // ── ADMIN RESOLVE ─────────────────────────────────────────────
 window.adminResolve = async function (col, id) {
-  if (!confirm('Mark this post as resolved?')) return
+  const ok = await showConfirm({
+    icon: '✔️',
+    title: 'Mark this post as resolved?',
+    desc: 'It will move to the Resolved tab and be visible to the public as resolved.',
+    okText: 'Mark Resolved',
+    okColor: '#1a7a5e'
+  })
+  if (!ok) return
   try {
     await updateDoc(doc(db, col, id), { status: 'resolved' })
     fadeAndReload(`acard-${col}-${id}`)
@@ -293,9 +300,15 @@ window.adminResolve = async function (col, id) {
 
 // ── ADMIN SOFT-DELETE (to archive) ───────────────────────────
 window.adminDelete = async function (col, id) {
-  if (!confirm('Move this post to the archive? It will be hidden from the public.')) return
+  const ok = await showConfirm({
+    icon: '🗃️',
+    title: 'Archive this post?',
+    desc: 'It will be hidden from the public. You can restore it later from the Archive tab.',
+    okText: 'Archive',
+    okColor: '#b45309'
+  })
+  if (!ok) return
   try {
-    // Get the document data first
     const { getDocs: _gd, ...rest } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")
     const { getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")
     const snap = await getDoc(doc(db, col, id))
@@ -322,7 +335,14 @@ window.adminDelete = async function (col, id) {
 
 // ── ADMIN RESTORE ─────────────────────────────────────────────
 window.adminRestore = async function (archiveId) {
-  if (!confirm('Restore this post to its original collection?')) return
+  const ok = await showConfirm({
+    icon: '↩️',
+    title: 'Restore this post?',
+    desc: 'It will be moved back to its original section and visible to the public again.',
+    okText: 'Restore',
+    okColor: '#1a2e5a'
+  })
+  if (!ok) return
   try {
     const { getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js")
     const snap = await getDoc(doc(db, 'archive', archiveId))
@@ -348,8 +368,26 @@ window.adminRestore = async function (archiveId) {
 
 // ── ADMIN PERMANENT DELETE ────────────────────────────────────
 window.adminPermaDelete = async function (archiveId) {
-  if (!confirm('⚠️ Permanently delete this post? This CANNOT be undone.')) return
-  if (!confirm('Are you absolutely sure? The post will be gone forever.')) return
+  const ok = await showConfirm({
+    icon: '🗑️',
+    title: 'Permanently delete this post?',
+    desc: 'This cannot be undone. The post will be removed from the database forever.',
+    okText: 'Delete Forever',
+    okColor: '#c0392b',
+    danger: true
+  })
+  if (!ok) return
+
+  const sure = await showConfirm({
+    icon: '⚠️',
+    title: 'Are you absolutely sure?',
+    desc: 'There is no way to recover this post once deleted.',
+    okText: 'Yes, Delete',
+    okColor: '#c0392b',
+    danger: true
+  })
+  if (!sure) return
+
   try {
     await deleteDoc(doc(db, 'archive', archiveId))
     const card = document.getElementById(`acard-archive-${archiveId}`)
