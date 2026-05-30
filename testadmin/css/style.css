@@ -1500,6 +1500,10 @@ a {
   border-bottom: 1px solid var(--gray-200);
 }
 
+#admin-dashboard .navbar {
+  animation: fadeIn 0.4s ease both;
+}
+
 /* ── ADMIN ACTION BUTTONS ───────────────────────────────────── */
 .admin-actions {
   display: flex;
@@ -1912,6 +1916,20 @@ a {
   to {
     opacity: 1;
   }
+
+
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .navbar {
@@ -2232,4 +2250,95 @@ a {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Custom Confirm Dialog */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 18, 40, 0.7);
+  backdrop-filter: blur(3px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.18s ease both;
+}
+
+.confirm-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem 1.75rem 1.5rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: fadeUp 0.22s ease both;
+  border-top: 4px solid var(--navy);
+}
+
+.confirm-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+.confirm-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.confirm-desc {
+  font-size: 0.84rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+.confirm-btns {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.confirm-cancel {
+  padding: 0.55rem 1.4rem;
+  border-radius: 50px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.confirm-cancel:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.confirm-ok {
+  padding: 0.55rem 1.4rem;
+  border-radius: 50px;
+  border: none;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.18s;
+}
+
+.confirm-ok:hover {
+  opacity: 0.88;
+}
+
+.confirm-box.danger {
+  border-top-color: var(--complaint);
 }
